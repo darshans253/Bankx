@@ -45,7 +45,11 @@ export default function Dashboard() {
   const getBalance = async () => {
     try {
       const { data } = await api.get(`/account/balance/${email}`);
+<<<<<<< HEAD
       setMessage(`💼 Current Balance: ₹${data.balance}`);
+=======
+      setMessage(`Current Balance: ₹${data.balance}`);
+>>>>>>> 255326d (Final)
     } catch (e) {
       setMessage(`❌ ${e.response?.data?.detail ?? e.message}`);
     }
@@ -58,7 +62,11 @@ export default function Dashboard() {
         receiver_email: recipient,
         amount: parseFloat(sendAmount),
       });
+<<<<<<< HEAD
       setMessage(`✅ Sent ₹${sendAmount} to ${recipient} (Txn ID: ${data.id})`);
+=======
+      setMessage(`Sent ₹${sendAmount} to ${recipient} (Txn ID: ${data.id})`);
+>>>>>>> 255326d (Final)
       fetchTransactions();
     } catch (e) {
       setMessage(`❌ ${e.response?.data?.detail ?? e.message}`);
@@ -67,9 +75,14 @@ export default function Dashboard() {
 
   const fetchTransactions = async () => {
     try {
+<<<<<<< HEAD
       // Changed 10 to 5 here:
       const { data } = await api.get(`/transaction/recent/${email}`);
       setTransactions(data.slice(0, 5)); // <--- CHANGED THIS LINE
+=======
+      const { data } = await api.get(`/transaction/recent/${email}`);
+      setTransactions(data.slice(0, 5));
+>>>>>>> 255326d (Final)
     } catch (e) {
       console.error('Failed to fetch transactions:', e.message);
     }
@@ -80,6 +93,7 @@ export default function Dashboard() {
   }, []);
 
   return (
+<<<<<<< HEAD
     <div className="card">
       <h2>🏦 Welcome, {username}</h2>
 
@@ -191,3 +205,119 @@ export default function Dashboard() {
     </div>
   );
 };
+=======
+    <div className="dashboard-container">
+      <h2 className="welcome-text">Welcome, {username}</h2>
+
+{/* Create Account */}
+<div className="card-section">
+  <div className="section-header">
+    <h3>Create New Account</h3>
+    <button className="disclosure-button" onClick={toggleCreate}>
+      {showCreate ? 'Hide' : 'Show'}
+    </button>
+  </div>
+
+  {showCreate && (
+    <div className="form-group vertical">
+      <label htmlFor="initial-balance">Initial Deposit (₹)</label>
+      <input
+        id="initial-balance"
+        type="number"
+        placeholder="e.g. 1000"
+        value={initialBalance}
+        onChange={(e) => setInitialBalance(e.target.value)}
+      />
+      <button onClick={createAccount}>Create Account</button>
+    </div>
+  )}
+</div>
+
+      {/* Deposit & Balance */}
+      <div className="card-section">
+        <h3>Deposit & Balance</h3>
+        <div className="form-group">
+          <input
+            type="number"
+            placeholder="Amount to deposit"
+            value={depositAmount}
+            onChange={(e) => setDepositAmount(e.target.value)}
+          />
+          <button onClick={deposit}>Deposit</button>
+          <button onClick={getBalance} style={{ marginLeft: '1rem' }}>
+            Check Balance
+          </button>
+        </div>
+      </div>
+
+      {/* Send Money */}
+      <div className="card-section">
+        <h3>Send Money</h3>
+        <div className="form-group">
+          <input
+            type="email"
+            placeholder="Recipient Email"
+            value={recipient}
+            onChange={(e) => setRecipient(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Amount to Send"
+            value={sendAmount}
+            onChange={(e) => setSendAmount(e.target.value)}
+          />
+          <button onClick={sendMoney}>Send Money</button>
+        </div>
+      </div>
+
+      {/* Status Message */}
+      {message && (
+        <div className="card-section">
+          <div
+            className={`status-message ${
+              message.startsWith('✅') ? 'success' :
+              message.startsWith('❌') ? 'error' : 'info'
+            }`}
+          >
+            {message}
+          </div>
+        </div>
+      )}
+
+      {/* Transactions */}
+      <div className="card-section">
+        <h3>Recent Transactions</h3>
+        {transactions.length === 0 ? (
+          <p>No transactions yet.</p>
+        ) : (
+          <div className="table-container">
+            <table className="txn-table">
+              <thead>
+                <tr>
+                  <th>Txn ID</th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Amount</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {transactions.map((txn) => (
+                  <tr key={txn.id}>
+                    <td>{txn.id}</td>
+                    <td>{txn.sender_email}</td>
+                    <td>{txn.receiver_email}</td>
+                    <td>₹{txn.amount}</td>
+                    <td>{new Date(txn.timestamp).toLocaleString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+>>>>>>> 255326d (Final)

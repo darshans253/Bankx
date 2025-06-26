@@ -1,12 +1,47 @@
+<<<<<<< HEAD
 /* Base Reset */
 body {
   font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
   background: #f0f2f5;
+=======
+.card h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1e3a8a;
+}
+
+/* === Fullscreen Background Layout === */
+body, html, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #f0f2f5, #e0e7ff);
+}
+
+
+/* === Global Reset === */
+body {
+  font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+  background: linear-gradient(to right, #f0f2f5, #e0e7ff);
+>>>>>>> 255326d (Final)
   margin: 0;
   color: #333;
   line-height: 1.6;
 }
 
+<<<<<<< HEAD
 /* Card Styling */
 .card {
   width: min(550px, 140vw);
@@ -40,6 +75,15 @@ input {
   border-radius: 10px;
   font-size: 1rem;
   transition: border-color 0.2s;
+=======
+/* === Global Inputs (Neutral) === */
+input {
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+>>>>>>> 255326d (Final)
 }
 
 input:focus {
@@ -48,6 +92,7 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
+<<<<<<< HEAD
 /* Buttons */
 button {
   flex: 1;
@@ -59,6 +104,18 @@ button {
   color: white;
   font-weight: 600;
   font-size: 1rem;
+=======
+/* === Global Buttons (Neutral) === */
+button {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+>>>>>>> 255326d (Final)
   transition: background 0.2s ease;
 }
 
@@ -66,6 +123,7 @@ button:hover {
   background: #1e4fcc;
 }
 
+<<<<<<< HEAD
 /* Button Group */
 .btn-row {
   display: flex;
@@ -75,6 +133,63 @@ button:hover {
 
 /* Message Output */
 pre {
+=======
+/* === Login Page Card (Restore) === */
+.card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* === Dashboard Scoped Styling === */
+.dashboard-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.dashboard-container .card-section {
+  background: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  margin-bottom: 2rem;
+}
+
+.dashboard-container .welcome-text {
+  margin-top: 0;
+  font-size: 1.75rem;
+  color: #111827;
+  text-align: left;
+}
+
+.dashboard-container h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.dashboard-container .form-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.dashboard-container .form-group input {
+  flex: 1;
+  width: auto;
+}
+
+.dashboard-container .status-message,
+.dashboard-container pre {
+>>>>>>> 255326d (Final)
   margin-top: 1.5rem;
   background: #f9fafb;
   padding: 1rem;
@@ -82,13 +197,21 @@ pre {
   font-size: 0.9rem;
   border-left: 4px solid #2563eb;
   color: #1f2937;
+<<<<<<< HEAD
 }
 /* Wrap table inside a scrollable container */
 .table-wrapper {
+=======
+  white-space: pre-wrap;
+}
+
+.dashboard-container .table-container {
+>>>>>>> 255326d (Final)
   overflow-x: auto;
   margin-top: 1rem;
 }
 
+<<<<<<< HEAD
 /* Adjust table width and prevent overflow */
 table {
   width: 100%;
@@ -103,13 +226,208 @@ table thead {
 
 table th,
 table td {
+=======
+.dashboard-container .txn-table {
+  width: 100%;
+  min-width: 500px;
+  border-collapse: collapse;
+}
+
+.dashboard-container .txn-table th,
+.dashboard-container .txn-table td {
+>>>>>>> 255326d (Final)
   padding: 0.6rem 0.8rem;
   text-align: left;
   border-bottom: 1px solid #e5e7eb;
   font-size: 0.95rem;
 }
 
+<<<<<<< HEAD
 table tbody tr:hover {
   background: #f9fafb;
 }
 
+=======
+.dashboard-container .txn-table thead {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.dashboard-container .txn-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* === Header === */
+.header {
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  color: white;
+  padding: 1rem;
+  text-align: left;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+/* === Footer === */
+.footer {
+  background: #f3f4f6;
+  color: #374151;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+/* === Login Card === */
+.card {
+  width: 100%;
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* === Login Inputs === */
+/* === Login Inputs === */
+.card input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  margin-bottom: 1rem;  /* ✅ Adds vertical spacing between inputs */
+}
+
+.card input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  outline: none;
+}
+
+/* === Buttons Row === */
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.btn-row button {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-row button:hover {
+  background: #1e40af;
+}
+
+/* === Message Area === */
+.card pre {
+  background: #f9fafb;
+  border-left: 4px solid #2563eb;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  color: #1f2937;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.status-message {
+margin: 2rem 0;
+      	margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status-message.success {
+  background-color: #ecfdf5;
+  border-left: 5px solid #10b981;
+  color: #065f46;
+}
+
+.status-message.error {
+  background-color: #fef2f2;
+  border-left: 5px solid #ef4444;
+  color: #991b1b;
+}
+
+.status-message.info {
+  background-color: #eff6ff;
+  border-left: 5px solid #3b82f6;
+  color: #1e3a8a;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action-button {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  background: #4b5563;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background: #374151;
+}
+
+.disclosure-button {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.disclosure-button:hover {
+  background-color: #e5e7eb;
+}
+
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.form-group.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-group.vertical label {
+  font-weight: 500;
+  color: #374151;
+  }
+>>>>>>> 255326d (Final)
