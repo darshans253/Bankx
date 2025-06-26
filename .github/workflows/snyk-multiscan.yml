@@ -1,0 +1,53 @@
+name: Snyk Multiservice Security Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  scan-services:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - account-service
+          - analytics-service
+          - transaction-service
+          - user-service
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies for ${{ matrix.service }}
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r ${{ matrix.service }}/requirements.txt
+
+    - name: Snyk Python scan for ${{ matrix.service }}
+      uses: snyk/actions/python@v1
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        project: ${{ matrix.service }}
+        file: ${{ matrix.service }}/requirements.txt
+        args: --file=${{ matrix.service }}/requirements.txt
+
+    - name: Build Docker image for ${{ matrix.service }}
+      run: docker build -t securebanking/${{ matrix.service }}:latest ${{ matrix.service }}
+
+    - name: Snyk Docker scan for ${{ matrix.service }}
+      uses: snyk/actions/docker@v1
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        image: securebanking/${{ matrix.service }}:latest
+        args: test
+
