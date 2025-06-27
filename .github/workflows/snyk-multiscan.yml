@@ -34,7 +34,7 @@ jobs:
     - name: Snyk Python scan for ${{ matrix.service }}
       uses: snyk/actions/python@master
       env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        SNYK_TOKEN: 4be6c448-84bb-44a7-970a-8e929c7b5c19
       with:
         project: ${{ matrix.service }}
         file: ${{ matrix.service }}/requirements.txt
@@ -46,7 +46,7 @@ jobs:
     - name: Snyk Docker scan for ${{ matrix.service }}
       uses: snyk/actions/docker@master
       env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        SNYK_TOKEN: 4be6c448-84bb-44a7-970a-8e929c7b5c19
       with:
         image: securebanking/${{ matrix.service }}:latest
         args: test

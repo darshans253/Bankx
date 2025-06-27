@@ -1,0 +1,14 @@
+# file: pod-root.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-root-pod
+spec:
+  containers:
+    - name: test
+      image: alpine
+      command: ["sh", "-c", "sleep 3600"]
+      securityContext:
+        runAsNonRoot: false  # <-- explicitly violating the policy
+  restartPolicy: Never
+
