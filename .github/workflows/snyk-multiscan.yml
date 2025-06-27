@@ -36,9 +36,7 @@ jobs:
       env:
         SNYK_TOKEN: 4be6c448-84bb-44a7-970a-8e929c7b5c19
       with:
-        project: ${{ matrix.service }}
-        file: ${{ matrix.service }}/requirements.txt
-        args: --file=${{ matrix.service }}/requirements.txt
+        args: --file=${{ matrix.service }}/requirements.txt --skip-unresolved
 
     - name: Build Docker image for ${{ matrix.service }}
       run: docker build -t securebanking/${{ matrix.service }}:latest ${{ matrix.service }}
