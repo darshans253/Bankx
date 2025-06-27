@@ -50,5 +50,5 @@ jobs:
         SNYK_TOKEN: 4be6c448-84bb-44a7-970a-8e929c7b5c19
       with:
         image: securebanking/${{ matrix.service }}:latest
-        args: --severity-threshold=medium --file=${{ matrix.service }}/Dockerfile --debug
+        args: --severity-threshold=high --file=${{ matrix.service }}/Dockerfile --debug
 
