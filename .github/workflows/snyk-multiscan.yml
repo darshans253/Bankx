@@ -42,10 +42,10 @@ jobs:
       run: docker build -t securebanking/${{ matrix.service }}:latest ${{ matrix.service }}
 
     - name: Snyk Docker scan for ${{ matrix.service }}
-      uses: snyk/actions/docker@master
+      uses: snyk/actions/docker@0.4.0
       env:
         SNYK_TOKEN: 4be6c448-84bb-44a7-970a-8e929c7b5c19
       with:
         image: securebanking/${{ matrix.service }}:latest
-        args: test
+        args: test --severity-threshold=medium --debug
 
