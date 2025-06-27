@@ -34,7 +34,7 @@ jobs:
     - name: Snyk Python scan for ${{ matrix.service }}
       uses: snyk/actions/python@0.4.0
       env:
-        SNYK_TOKEN: 4be6c448-84bb-44a7-970a-8e929c7b5c19
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         args: --file=${{ matrix.service }}/requirements.txt --skip-unresolved --severity-threshold=medium
 
@@ -44,11 +44,18 @@ jobs:
     - name: Confirm image exists
       run: docker images | grep securebanking/${{ matrix.service }}
 
-    - name: Snyk Docker scan for ${{ matrix.service }}
-      uses: snyk/actions/docker@0.4.0
+    - name: Run Snyk Docker scan and generate SARIF
+      run: |
+        snyk test --docker securebanking/${{ matrix.service }}:latest \
+        --file=${{ matrix.service }}/Dockerfile \
+        --severity-threshold=high \
+        --sarif-file-output=snyk-${{ matrix.service }}.sarif \
+        --debug || true
       env:
-        SNYK_TOKEN: 4be6c448-84bb-44a7-970a-8e929c7b5c19
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+    - name: Upload SARIF to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
       with:
-        image: securebanking/${{ matrix.service }}:latest
-        args: --severity-threshold=high --file=${{ matrix.service }}/Dockerfile --debug
+        sarif_file: snyk-${{ matrix.service }}.sarif
 
