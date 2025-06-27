@@ -4,12 +4,8 @@ sqlalchemy
 psycopg2-binary
 passlib[bcrypt]
 pydantic[email]
-python-dotenv    # optional but handy locally
+python-dotenv    
 pydantic-settings
 bcrypt==4.0.1
-<<<<<<< HEAD
-
-=======
 httpx
 asyncio
->>>>>>> 255326d (Final)
