@@ -2,8 +2,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Header from './components/Header';
-import Footer from './components/Footer'
+import Footer from './components/Footer';
+import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
+import Admin from "./pages/Admin";
 
 export default function App() {
   return (
@@ -13,7 +15,15 @@ export default function App() {
         <div className="app-main">
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/admin" element={<Admin />} /> {/* 👈 Unprotected route */}
           </Routes>
         </div>
         <Footer />
@@ -21,4 +31,3 @@ export default function App() {
     </BrowserRouter>
   );
 }
-

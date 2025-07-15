@@ -1,4 +1,3 @@
-# file: pod-root.yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -9,6 +8,6 @@ spec:
       image: alpine
       command: ["sh", "-c", "sleep 3600"]
       securityContext:
-        runAsNonRoot: false  # <-- explicitly violating the policy
+        runAsNonRoot: false 
   restartPolicy: Never
 
